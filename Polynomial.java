@@ -19,10 +19,10 @@ public class Polynomial {
 			if (i < polynomial.coefficients.length && i < coefficients.length) {
 				arr[i] = polynomial.coefficients[i] + coefficients[i];
 			}
-			else if(i < polynomial.coefficients.length) {
+			else if (i < polynomial.coefficients.length) {
 				arr[i] = polynomial.coefficients[i];
 			}
-			else if(i < coefficients.length) {
+			else if (i < coefficients.length) {
 				arr[i] = coefficients[i];
 			}
 		}
