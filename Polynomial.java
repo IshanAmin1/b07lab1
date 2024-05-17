@@ -17,14 +17,11 @@ public class Polynomial {
 		int max_length = Math.max(coefficients.length, polynomial.coefficients.length);
 		double[] arr = new double[max_length];
 		for (int i = 0; i < max_length; i++) {
-			if (i < polynomial.coefficients.length && i < coefficients.length) {
-				arr[i] = polynomial.coefficients[i] + coefficients[i];
+			if (i < polynomial.coefficients.length) {
+				arr[i] += polynomial.coefficients[i];
 			}
-			else if (i < polynomial.coefficients.length) {
-				arr[i] = polynomial.coefficients[i];
-			}
-			else if (i < coefficients.length) {
-				arr[i] = coefficients[i];
+			if (i < coefficients.length) {
+				arr[i] += coefficients[i];
 			}
 		}
 		Polynomial new_poly = new Polynomial(arr);
