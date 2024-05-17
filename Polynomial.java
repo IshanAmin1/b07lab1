@@ -14,8 +14,9 @@ public class Polynomial {
 	}
 
 	public Polynomial add(Polynomial polynomial) {
-		double[] arr = new double[Math.max(coefficients.length, polynomial.coefficients.length)];
-		for (int i = 0; i < Math.max(coefficients.length, polynomial.coefficients.length); i++) {
+		int max_length = Math.max(coefficients.length, polynomial.coefficients.length);
+		double[] arr = new double[max_length];
+		for (int i = 0; i < max_length; i++) {
 			if (i < polynomial.coefficients.length && i < coefficients.length) {
 				arr[i] = polynomial.coefficients[i] + coefficients[i];
 			}
@@ -39,10 +40,7 @@ public class Polynomial {
 	}
 	
 	public boolean hasRoot(double x) {
-		double result = 0;
-		for (int i = 0; i < coefficients.length; i++) { 
-			result += coefficients[i]*Math.pow(x, i);
-		}
+		double result = evaluate(x);
 		return result == 0;
 	}
 }
