@@ -12,5 +12,15 @@ public class Driver {
 			System.out.println("1 is a root of s");
 		else
 			System.out.println("1 is not a root of s");
+		
+		double [] c3 = {1,1,1};
+		Polynomial p3 = new Polynomial(c3);
+		
+		double [] c4 = {1,1,1,1};
+		Polynomial p4 = new Polynomial(c4);
+
+		Polynomial s2 = p4.add(p3);
+		System.out.println("s2(1) = " + s2.evaluate(1));
+	
 	}
 }
