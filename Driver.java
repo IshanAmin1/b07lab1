@@ -1,26 +1,36 @@
-public class Driver {
-	public static void main(String [] args) {
-		Polynomial p = new Polynomial();
-		System.out.println(p.evaluate(3));
-		double [] c1 = {6,0,0,5};
-		Polynomial p1 = new Polynomial(c1);
-		double [] c2 = {0,-2,0,0,-9};
-		Polynomial p2 = new Polynomial(c2);
-		Polynomial s = p1.add(p2);
-		System.out.println("s(0.1) = " + s.evaluate(0.1));
-		if(s.hasRoot(1))
-			System.out.println("1 is a root of s");
-		else
-			System.out.println("1 is not a root of s");
-		
-		double [] c3 = {1,1,1};
-		Polynomial p3 = new Polynomial(c3);
-		
-		double [] c4 = {1,1,1,1};
-		Polynomial p4 = new Polynomial(c4);
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
 
-		Polynomial s2 = p4.add(p3);
-		System.out.println("s2(1) = " + s2.evaluate(1));
-	
+public class Driver {
+	public static void main(String [] args) throws IOException {
+		
+		double[] coefficients1 = {-1,-1};
+        int[] exponents1 = {1,0};
+        Polynomial poly1 = new Polynomial(coefficients1, exponents1);
+        
+        double[] coefficients2 = {1,1};
+        int[] exponents2 = {0,1};
+        Polynomial poly2 = new Polynomial(coefficients2, exponents2);
+        
+        Polynomial result = poly1.add(poly2);
+        
+        System.out.println("Resulting coefficients: " + Arrays.toString(result.coefficients));
+        System.out.println("Resulting exponents: " + Arrays.toString(result.exponents));
+        
+       System.out.println("Result: " + result.evaluate(-2));
+       System.out.println("Has Root: " + result.hasRoot(-1));
+        
+        Polynomial result2 = poly1.multiply(poly2);
+
+        System.out.println("Resulting coefficients: " + Arrays.toString(result2.coefficients));
+        System.out.println("Resulting exponents: " + Arrays.toString(result2.exponents));
+        
+        File Obj = new File("C:\\Users\\ishan\\Downloads\\Data.txt");
+        Polynomial new_poly = new Polynomial(Obj);
+        System.out.println("Resulting coefficients: " + Arrays.toString(new_poly.coefficients));
+        System.out.println("Resulting exponents: " + Arrays.toString(new_poly.exponents));
+        
+        result2.saveToFile("C:\\Users\\ishan\\Downloads\\DataWrite.txt");
 	}
 }
