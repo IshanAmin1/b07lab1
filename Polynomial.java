@@ -203,7 +203,9 @@ public class Polynomial {
 	
 	public void saveToFile(String filename) throws FileNotFoundException {
 		PrintStream output = new PrintStream(filename);
-		
+		if (this.coefficients.length == 0) {
+			output.print(0);
+		}
 		for (int i = 0; i < this.coefficients.length; i++) {
 			if (this.exponents[i] == 0) {
 				if (this.coefficients[i] > 0 && i != 0) {
