@@ -16,14 +16,20 @@ public class Polynomial {
 	}
 
 	public Polynomial(double[] coefficients, int[] exponents) {
-		this.coefficients = new double[coefficients.length];
-		for (int i = 0; i < coefficients.length; i++) {
-			this.coefficients[i] = coefficients[i];
+		if (coefficients == null || coefficients.length  == 0){
+			this.coefficients = null;
+			this.exponents = null;
 		}
-		
-		this.exponents = new int[exponents.length];
-		for (int i = 0; i < exponents.length; i++) {
-			this.exponents[i] = exponents[i];
+		else{
+			this.coefficients = new double[coefficients.length];
+			for (int i = 0; i < coefficients.length; i++) {
+				this.coefficients[i] = coefficients[i];
+			}
+			
+			this.exponents = new int[exponents.length];
+			for (int i = 0; i < exponents.length; i++) {
+				this.exponents[i] = exponents[i];
+			}
 		}
 	}
 	
