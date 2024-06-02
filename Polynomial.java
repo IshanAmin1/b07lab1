@@ -49,11 +49,12 @@ public class Polynomial {
 				this.exponents[i] = 0;
 				}
 			
-            		else {
-                		this.coefficients[i] = Double.parseDouble(arr[0]);
-                		this.exponents[i] = Integer.parseInt(arr[1]);
-				}
+            else {
+                this.coefficients[i] = Double.parseDouble(arr[0]);
+                this.exponents[i] = Integer.parseInt(arr[1]);
 			}
+		}
+		
 		Polynomial poly = new Polynomial(coefficients, exponents);
 		poly = removeZeroCoeff(poly);
 		
@@ -145,7 +146,7 @@ public class Polynomial {
             	int indexInThis = isPresentIndex(this.exponents, new_exp[i]);
             	if (indexInThis != -1) {
                 	new_coefficients[i] += this.coefficients[indexInThis];
-            }
+            	}
             	int indexInPolynomial = isPresentIndex(polynomial.exponents, new_exp[i]);
             	if (indexInPolynomial != -1) {
                 	new_coefficients[i] += polynomial.coefficients[indexInPolynomial];
@@ -197,7 +198,7 @@ public class Polynomial {
 			for (int j = 0; j < polynomial.exponents.length; j++) {
 				temp_exp[j] = exponents[i] + polynomial.exponents[j];
 				temp_coefficients[j] = coefficients[i]*polynomial.coefficients[j];
-				}
+			}
 			Polynomial temp_poly = new Polynomial(temp_coefficients, temp_exp);
 			new_poly = new_poly.add(temp_poly);
 		}
