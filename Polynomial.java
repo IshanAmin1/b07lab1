@@ -11,8 +11,8 @@ public class Polynomial {
 	int[] exponents;
 	
 	public Polynomial() {
-		coefficients = new double[0];
-		exponents = new int[0];
+		coefficients = null;
+		exponents = null;
 	}
 
 	public Polynomial(double[] coefficients, int[] exponents) {
@@ -117,21 +117,25 @@ public class Polynomial {
 				k++;
 			}
 		}
-	
-		Polynomial multi_poly = new Polynomial(new_coeff, new_exp);
-		return multi_poly;
+		if (new_coeff.length == 0) {
+			return new Polynomial();
+		}
+		else {
+			Polynomial multi_poly = new Polynomial(new_coeff, new_exp);
+			return multi_poly;
+		}
 	}
 	
 	public Polynomial add(Polynomial polynomial) {
-		if (this.exponents.length == 0 && polynomial.exponents.length == 0) {
+		if (this.exponents == null && polynomial.exponents == null) {
 			return new Polynomial();
 		}
 		
-		if (this.exponents.length == 0) {
+		if (this.exponents == null) {
 			return new Polynomial(polynomial.coefficients, polynomial.exponents);
 		}
 		
-		if (polynomial.exponents.length == 0) {
+		if (polynomial.exponents == null) {
 			return new Polynomial(this.coefficients, this.exponents);
 		}
 		
@@ -155,7 +159,7 @@ public class Polynomial {
 	
 	public double evaluate(double x) {
 		double result = 0;
-		if (coefficients.length == 0 || exponents.length == 0) {
+		if (coefficients == null || exponents == null) {
 			return result;
 		}
 		for (int i = 0; i < coefficients.length; i++) { 
@@ -180,7 +184,7 @@ public class Polynomial {
 	}
 	
 	public Polynomial multiply(Polynomial polynomial){
-		if (this.exponents.length == 0 || polynomial.exponents.length == 0) {
+		if (this.exponents == null || polynomial.exponents == null) {
 			return new Polynomial();
 		}
 		
@@ -203,38 +207,39 @@ public class Polynomial {
 	
 	public void saveToFile(String filename) throws FileNotFoundException {
 		PrintStream output = new PrintStream(filename);
-		if (this.coefficients.length == 0) {
+		if (this.coefficients == null) {
 			output.print(0);
 		}
-		for (int i = 0; i < this.coefficients.length; i++) {
-			if (this.exponents[i] == 0) {
-				if (this.coefficients[i] > 0 && i != 0) {
-					output.print("+");
+		else {
+			for (int i = 0; i < this.coefficients.length; i++) {
+				if (this.exponents[i] == 0) {
+					if (this.coefficients[i] > 0 && i != 0) {
+						output.print("+");
+						output.print(this.coefficients[i]);
+					}
+					
+					else {
 					output.print(this.coefficients[i]);
+					}
 				}
-				
-				else {
-				output.print(this.coefficients[i]);
-				}
-			}
-		
-			else {	
-				if (this.coefficients[i] > 0 && i != 0) {
-				output.print("+");
-				output.print(this.coefficients[i]);
-				output.print("x");
-				output.print(this.exponents[i]);
-				
-				}
-				
-				else {
+			
+				else {	
+					if (this.coefficients[i] > 0 && i != 0) {
+					output.print("+");
 					output.print(this.coefficients[i]);
 					output.print("x");
 					output.print(this.exponents[i]);
+					
+					}
+					
+					else {
+						output.print(this.coefficients[i]);
+						output.print("x");
+						output.print(this.exponents[i]);
+					}
 				}
 			}
 		}
-		
 		output.close();
 	}
 }
