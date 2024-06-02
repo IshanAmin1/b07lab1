@@ -189,10 +189,11 @@ public class Polynomial {
 		}
 		
 		Polynomial new_poly = new Polynomial();
-		int[] temp_exp = new int[Math.max(polynomial.exponents.length, exponents.length)];
-		double[] temp_coefficients = new double[Math.max(polynomial.exponents.length, exponents.length)];
-		
+	
 		for (int i = 0; i < exponents.length; i++){
+			int[] temp_exp = new int[Math.max(polynomial.exponents.length, exponents.length)];
+			double[] temp_coefficients = new double[Math.max(polynomial.exponents.length, exponents.length)];
+			
 			for (int j = 0; j < polynomial.exponents.length; j++) {
 				temp_exp[j] = exponents[i] + polynomial.exponents[j];
 				temp_coefficients[j] = coefficients[i]*polynomial.coefficients[j];
