@@ -16,11 +16,11 @@ public class Polynomial {
 	}
 
 	public Polynomial(double[] coefficients, int[] exponents) {
-		if (coefficients == null || coefficients.length  == 0){
+		if (coefficients == null || coefficients.length == 0){
 			this.coefficients = null;
 			this.exponents = null;
 		}
-		else{
+		else {
 			this.coefficients = new double[coefficients.length];
 			for (int i = 0; i < coefficients.length; i++) {
 				this.coefficients[i] = coefficients[i];
@@ -37,31 +37,28 @@ public class Polynomial {
 		BufferedReader input = new BufferedReader(new FileReader(file));
 		String data = input.readLine();
 		input.close();
-		
+
 		String[] arrOfValues = data.split("(?=[-+])");
 		this.coefficients = new double[arrOfValues.length];
 		this.exponents = new int[arrOfValues.length];
 		
 		for (int i = 0; i < arrOfValues.length; i++) {
 			String[] arr = arrOfValues[i].split("x");
-			
 			if (arrOfValues[i].contains("x") == false) {
 				this.coefficients[i] = Double.parseDouble(arr[0]);
 				this.exponents[i] = 0;
 				}
 			
-            else {
-                this.coefficients[i] = Double.parseDouble(arr[0]);
-                this.exponents[i] = Integer.parseInt(arr[1]);
+            		else {
+                		this.coefficients[i] = Double.parseDouble(arr[0]);
+                		this.exponents[i] = Integer.parseInt(arr[1]);
 				}
 			}
-		
 		Polynomial poly = new Polynomial(coefficients, exponents);
 		poly = removeZeroCoeff(poly);
 		
 		this.coefficients = poly.coefficients;
 		this.exponents = poly.exponents;
-		
 	}
 	
 	private boolean isPresent(int arr[], int num) {	
@@ -95,18 +92,15 @@ public class Polynomial {
 				tempArr[size++] = polynomial.exponents[i];
 			}
 		}
-
 		for (int i = 0; i < exponents.length; i++) {
 			if (isPresent(tempArr, exponents[i]) == false) {
 				tempArr[size++] = exponents[i];
 			}
-		}
-			
+		}	
 		int[] mergedExponents = new int[size];
 		for (int i = 0; i < size; i++) {
 			mergedExponents[i] = tempArr[i];
 		}
-		
 		return mergedExponents;
 	}
 	
@@ -148,13 +142,13 @@ public class Polynomial {
 		int[] new_exp = mergeExponentArray(polynomial);
 		double [] new_coefficients = new double[new_exp.length];
 		for (int i = 0; i < new_exp.length; i++) {
-            int indexInThis = isPresentIndex(this.exponents, new_exp[i]);
-            if (indexInThis != -1) {
-                new_coefficients[i] += this.coefficients[indexInThis];
+            	int indexInThis = isPresentIndex(this.exponents, new_exp[i]);
+            	if (indexInThis != -1) {
+                	new_coefficients[i] += this.coefficients[indexInThis];
             }
-            int indexInPolynomial = isPresentIndex(polynomial.exponents, new_exp[i]);
-            if (indexInPolynomial != -1) {
-                new_coefficients[i] += polynomial.coefficients[indexInPolynomial];
+            	int indexInPolynomial = isPresentIndex(polynomial.exponents, new_exp[i]);
+            	if (indexInPolynomial != -1) {
+                	new_coefficients[i] += polynomial.coefficients[indexInPolynomial];
             }
         }
 		
@@ -226,7 +220,7 @@ public class Polynomial {
 					}
 					
 					else {
-					output.print(this.coefficients[i]);
+						output.print(this.coefficients[i]);
 					}
 				}
 			
